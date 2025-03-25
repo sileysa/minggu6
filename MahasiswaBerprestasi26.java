@@ -1,7 +1,7 @@
 public class MahasiswaBerprestasi26 {
-    int jumlah;
-    Mahasiswa26[] listMhs = new Mahasiswa26[jumlah];
-    int idx;
+    int jumMhs;
+    Mahasiswa26[] listMhs = new Mahasiswa26[jumMhs];
+    int idx = 0;
 
     void tambah (Mahasiswa26 m) {
         if (idx < listMhs.length) {
@@ -19,7 +19,7 @@ public class MahasiswaBerprestasi26 {
         }
     }
 
-    void bubbleSort(Mahasiswa26[] listMhs) {
+    /*void bubbleSort(Mahasiswa26[] listMhs) {
         for (int i = 0; i < listMhs.length-1; i++) {
             for (int j = 1; j < listMhs.length-i; j++) {
                 if (listMhs[j].ipk > listMhs[j-1].ipk) {
@@ -55,5 +55,50 @@ public class MahasiswaBerprestasi26 {
             }
             listMhs[j] = temp;
         }
+    }*/
+
+    int sequentialSearching(double cari){
+        int posisi = -1;
+        for (int j = 0; j < listMhs.length; j++) {
+            if (listMhs[j].ipk == cari) {
+                posisi = j;
+                break;
+            }
+        }
+        return posisi;
+    }
+
+    void tampilPosisi (double x, int pos){
+        if (pos != -1) {
+            System.out.println("data mahasiswa dengan ipk: " + x + " ditemukan pada indeks " + pos);
+        } else {
+            System.out.println("data " + x + " tidak ditemukan");
+        }
+    }
+
+    void tampilDataSearch(double x, int pos) {
+        if (pos != -1) {
+            System.out.println("nim\t : " + listMhs[pos].nim);
+            System.out.println("nama\t : " + listMhs[pos].nama);
+            System.out.println("kelas\t : " + listMhs[pos].kelas);
+            System.out.println("ipk\t : " + x);
+        } else {
+            System.out.println("Data mahasiswa dengan IPK " + x + " tidak ditemukan");
+        }
+    }
+
+    int findBinarySearch(double cari, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right)/2;
+            if (cari == listMhs[mid].ipk) {
+                return mid;
+            } else if (listMhs[mid].ipk > cari) {
+                return findBinarySearch(cari, left, mid-1);
+            } else {
+                return findBinarySearch(cari, mid+1, right);
+            }
+        }
+        return -1;
     }
 }

@@ -18,7 +18,7 @@ public class DataDosen26 {
         }
     }
 
-    void sortingASC() {
+    /*void sortingASC() {
         for (int i = 0; i < idx -1; i++) {
             for (int j = 0; j < idx - 1 - i; j++) {
                 if (dataDosen[j].usia > dataDosen[j+1].usia) {
@@ -54,5 +54,49 @@ public class DataDosen26 {
             }
             dataDosen[j] = temp;
         }
+    }*/
+
+    void sequentialSearching26(String cari){
+        int posisi = -1;
+        for (int j = 0; j < idx; j++) {
+            if (dataDosen[j].nama == cari) {
+                posisi = j;
+                break;
+            }
+        }
+    }
+
+    void tampilPosisi (int x, int pos){
+        if (pos != -1) {
+            System.out.println("data dosen dengan usia: " + x + " ditemukan pada indeks " + pos);
+        } else {
+            System.out.println("data " + x + " tidak ditemukan");
+        }
+    }
+
+    void tampilDataSearch(int x, int pos) {
+        if (pos != -1) {
+            System.out.println("kode\t : " + dataDosen[pos].kode);
+            System.out.println("nama\t : " + dataDosen[pos].nama);
+            System.out.println("jenis kelamin\t : " + dataDosen[pos].jenisKelamin);
+            System.out.println("usia\t : " + x);
+        } else {
+            System.out.println("Data dosen dengan usia " + x + " tidak ditemukan");
+        }
+    }
+
+    int findBinarySearch26(int carius, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right)/2;
+            if (carius == dataDosen[mid].usia) {
+                return mid;
+            } else if (dataDosen[mid].usia > carius) {
+                return findBinarySearch26(carius, left, mid-1);
+            } else {
+                return findBinarySearch26(carius, mid+1, right);
+            }
+        }
+        return -1;
     }
 }

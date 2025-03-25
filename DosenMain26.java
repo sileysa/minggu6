@@ -12,7 +12,9 @@ public class DosenMain26 {
             System.out.println("2. Tampil Data");
             System.out.println("3. Sorting ASC");
             System.out.println("4. Sorting DSC");
-            System.out.println("5. Keluar");
+            System.out.println("5. Sequential Searching");
+            System.out.println("6. Binary Search");
+            System.out.println("7. Keluar");
             System.out.print("Pilih menu: ");
             pilihan = leli.nextInt();
 
@@ -41,21 +43,42 @@ public class DosenMain26 {
                 case 2:
                     dataDosen.tampil();
                     break;
-                case 3:
+                /*case 3:
                     dataDosen.sortingASC();
                     dataDosen.tampil();
                     break;
                 case 4:
                     dataDosen.sortingDSC();
                     dataDosen.tampil();
-                    break;
+                    break;*/
                 case 5:
+                    System.out.println("---------------------------------------------------");
+                    System.out.println("Pencarian data");
+                    System.out.println("---------------------------------------------------");
+                    System.out.println("masukkan nama dosen yang dicari");
+                    System.out.print("Nama: ");
+                    String cari = leli.nextLine();
+                    dataDosen.sequentialSearching26(cari);
+                    break;
+                case 6:
+                    System.out.println("--------------------------------------");
+                    System.out.println("menggunakan binary search");
+                    System.out.println("--------------------------------------");
+                    System.out.println("masukkan usia dosen yang dicari");
+                    System.out.print("Usia: ");
+                    int carius = leli.nextInt();
+                    int posisi2 = dataDosen.findBinarySearch26(carius, 0, jumlah-1);
+                    int pss2 = (int) posisi2;
+                    dataDosen.tampilPosisi(carius, pss2);
+                    dataDosen.tampilDataSearch(posisi2, pss2);
+                    break;
+                case 7:
                     System.out.println("Keluar dari program");
                     break;
                 default:
                     break;
             }
-        } while (pilihan != 5);
+        } while (pilihan != 7);
         
     }
 }

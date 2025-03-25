@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class MahasiswaDemo26 {
     public static void main(String[] args) {
         Scanner leli = new Scanner(System.in);
+        //int jumMhs = 5;
         System.out.print("Masukkan jumlah mahasiswa: ");
-        int jumlah = leli.nextInt();
+        int jumMhs = leli.nextInt();
         leli.nextLine();
 
-        Mahasiswa26[] listMhs = new Mahasiswa26[jumlah];
+        //Mahasiswa26[] listMhs = new Mahasiswa26[jumMhs];
         MahasiswaBerprestasi26 list = new MahasiswaBerprestasi26();
         /*Mahasiswa26 m1 = new Mahasiswa26("123", "Zidan", "2A", 3.2);
         Mahasiswa26 m2 = new Mahasiswa26("124", "Ayu", "2A", 3.5);
@@ -23,7 +24,7 @@ public class MahasiswaDemo26 {
         list.tambah(m5);*/
 
         System.out.println("Data mahasiswa sebelum sorting: ");
-        for (int i = 0; i < jumlah; i++) {
+        for (int i = 0; i < jumMhs; i++) {
             System.out.println("Mahasiswa ke-" + (i+1) + ": ");
             System.out.print("NIM: ");
             String nim = leli.nextLine();
@@ -36,9 +37,31 @@ public class MahasiswaDemo26 {
             double ipk = Double.parseDouble(dummy);
             System.out.println("---------------------------------------------------");
 
-            listMhs[i] = new Mahasiswa26(nim, nama, kelas, ipk);
+            list.tambah(new Mahasiswa26(nim, nama, kelas, ipk));
         }
-        //list.tampil();
+        list.tampil();
+        System.out.println("---------------------------------------------------");
+        System.out.println("Pencarian data");
+        System.out.println("---------------------------------------------------");
+        System.out.println("masukkan ipk mahasiswa yang dicari");
+        System.out.print("IPK: ");
+        String dummy = leli.nextLine();
+        double cari = Double.parseDouble(dummy);
+        leli.nextLine();
+
+        /*System.out.println("menggunakan sequential searching");
+        double posisi = list.sequentialSearching(cari);
+        int pss = (int) posisi;
+        list.tampilPosisi(cari, pss);
+        list.tampilDataSearch(posisi, pss);*/
+
+        System.out.println("--------------------------------------");
+        System.out.println("menggunakan binary search");
+        System.out.println("--------------------------------------");
+        double posisi2 = list.findBinarySearch(cari, 0, jumMhs-1);
+        int pss2 = (int) posisi2;
+        list.tampilPosisi(cari, pss2);
+        list.tampilDataSearch(posisi2, pss2);
         /*list.bubbleSort(listMhs);
         System.out.println("Data mahasiswa setelah sorting berdasarkan IPK (DESC) : ");
         for (Mahasiswa26 mahasiswa : listMhs) {
@@ -55,11 +78,11 @@ public class MahasiswaDemo26 {
             System.out.println("---------------------------------------------------");
         }*/
 
-        System.out.println("Data yang sudah terurut menggunakan INSERTION SORT (DESC)");
+        /*System.out.println("Data yang sudah terurut menggunakan INSERTION SORT (DESC)");
         list.insertionSort(listMhs);
         for (Mahasiswa26 mahasiswa : listMhs) {
             mahasiswa.tampilInformasi();
             System.out.println("---------------------------------------------------");
-        }        
+        }*/
     }
 }
